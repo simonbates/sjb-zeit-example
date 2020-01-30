@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>ZEIT Now Example</title>
+    </head>
+    <body>
+        <label for="input">Input:</label>
+        <input type="text" id="input" name="input">
+        <button id="send">Send</button>
+        <div id="responses">
+        </div>
+    </body>
+    <script type="text/javascript">
+        document.getElementById('send').addEventListener('click', (event) => {
+            const inputVal = document.getElementById('input').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/echo', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    const p = document.createElement('p');
+                    p.appendChild(document.createTextNode(xhr.responseText));
+                    document.getElementById('responses').append(p);
+                }
+            };
+            xhr.send(`input=${encodeURIComponent(inputVal)}`);
+        });
+    </script>
+</html>

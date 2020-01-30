@@ -1,0 +1,10 @@
+{
+    "name": "sjb-zeit-example",
+    "private": true,
+    "devDependencies": {
+        "now": "16.7.3"
+    },
+    "scripts": {
+        "build": "node build_website.js"
+    }
+}
